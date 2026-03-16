@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure--1*hrtf!!+kiqh5$q61boxhs$a+qm+an47@@emh5&)7ggu(eqy'
+ANALYTICS_API_KEY = "analytics_internal_secret"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.infrastructure.middleware.service_auth.ServiceAuthMiddleware',
 ]
 
 ROOT_URLCONF = 'linkgps_analytics.urls'
