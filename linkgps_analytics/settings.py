@@ -11,22 +11,27 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Auto-load .env file if present
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--1*hrtf!!+kiqh5$q61boxhs$a+qm+an47@@emh5&)7ggu(eqy'
-ANALYTICS_API_KEY = "analytics_internal_secret"
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--1*hrtf!!+kiqh5$q61boxhs$a+qm+an47@@emh5&)7ggu(eqy')
+ANALYTICS_API_KEY = os.environ.get('ANALYTICS_API_KEY', 'analytics_internal_secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 
 # Application definition
@@ -77,17 +82,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'linkgps_analytics.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+# -----------------------------------------------------------------------
+# Database: PostgreSQL + PostGIS + TimescaleDB
+# Credentials via environment variables (or .env file with python-dotenv)
+# -----------------------------------------------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'linkGPSpcBD',
-        'USER': 'postgres',
-        'PASSWORD': '9205156Rod',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME', 'LinkGPStracking'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+        # Default search_path: tracking schema first, then public (PostGIS)
+        'OPTIONS': {
+            'options': '-c search_path=tracking,public'
+        },
     }
 }
 
@@ -96,25 +106,17 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-us'
 
 TIME_ZONE = 'UTC'
 
@@ -133,11 +135,37 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#para los cors
+# CORS — allow all origins for microservice usage
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+}
+
+# ── Celery (async ML tasks) ─────────────────────────────────────────────
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379/0')
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+# Periodic tasks (requires celery beat + django-celery-beat)
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    # Nightly: retrain all models at 02:00 UTC
+    'train-all-devices-nightly': {
+        'task': 'analytics.tasks.train_all_devices_task',
+        'schedule': crontab(hour=2, minute=0),
+        'args': (20,),  # 20 days
+    },
+    # Hourly batch inference for all active devices
+    'batch-inference-hourly': {
+        'task': 'analytics.tasks.train_all_devices_task',
+        'schedule': crontab(minute=30),  # Every hour at :30
+    },
 }

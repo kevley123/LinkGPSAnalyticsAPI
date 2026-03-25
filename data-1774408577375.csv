@@ -1,0 +1,374 @@
+"dbms","table_catalog","table_schema","table_name","column_name","ordinal_position","data_type","character_maximum_length","constraint_type","table_schema-2","table_name-2","column_name-2"
+"postgresql","LinkGPStracking","public","spatial_ref_sys","srid",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","schema_name",2,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","table_name",3,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","associated_schema_name",4,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","associated_table_prefix",5,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","compressed_hypertable_id",11,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","tablespace","hypertable_id",2,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","tablespace","hypertable_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","tablespace","tablespace_name",3,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","tablespace","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","hypertable_id",2,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","hypertable_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","column_name",3,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension_slice","dimension_id",2,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension_slice","dimension_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","dimension","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension_slice","range_start",3,"bigint",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension_slice","range_end",4,"bigint",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension_slice","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","hypertable_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","schema_name",3,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","table_name",4,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","compressed_chunk_id",5,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","chunk","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_constraint","chunk_id",1,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_constraint","chunk_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","chunk","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_constraint","dimension_slice_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","dimension_slice","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_constraint","constraint_name",3,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","hypertable_id",2,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","hypertable_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","chunk_id",3,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","chunk_id",3,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","chunk","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","column_name",4,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","hypertable_id",13,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","job_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","job_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","bgw_job","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_policy_chunk_stats","job_id",1,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_policy_chunk_stats","job_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","bgw_job","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_policy_chunk_stats","chunk_id",2,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_policy_chunk_stats","chunk_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","chunk","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","metadata","key",1,"name",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","mat_hypertable_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","mat_hypertable_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","raw_hypertable_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","parent_mat_hypertable_id",3,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","continuous_agg","mat_hypertable_id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","user_view_schema",4,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","user_view_name",5,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","partial_view_schema",6,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","partial_view_name",7,"name",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","mat_hypertable_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","mat_hypertable_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_invalidation_threshold","hypertable_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_invalidation_threshold","hypertable_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","hypertable","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_watermark","mat_hypertable_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_watermark","mat_hypertable_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","continuous_agg","mat_hypertable_id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_materialization_invalidation_log","materialization_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","continuous_agg","mat_hypertable_id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_materialization_ranges","materialization_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","continuous_agg","mat_hypertable_id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_algorithm","id",1,"smallint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","relid",1,"regclass",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","chunk_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","chunk_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","chunk","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","compressed_chunk_id",2,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","chunk","id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan","mat_hypertable_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","mat_hypertable_id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","mat_hypertable_id",1,"integer",NULL,"FOREIGN KEY","_timescaledb_catalog","continuous_agg_migrate_plan","mat_hypertable_id"
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","step_id",2,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_rewrite","chunk_relid",1,"regclass",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","device_imei",2,"character varying",20,"UNIQUE",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","gps_positions","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","device_id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","device_id",1,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","geofences","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofence_events","geofence_id",2,"bigint",NULL,"FOREIGN KEY","tracking","geofences","id"
+"postgresql","LinkGPStracking","tracking","geofence_events","device_id",3,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","geofence_events","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_events","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","device_events","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","alerts","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","alerts","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","daily_routes","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","recorded_at",9,"timestamp with time zone",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","device_id",2,"bigint",NULL,"FOREIGN KEY","tracking","tracked_devices","id"
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","id",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_cache","cache_inval_extension",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_cache","cache_inval_bgw_job",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_cache","cache_inval_hypertable",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","compress_relid",2,"regclass",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","name",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","range_end",6,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","alerts","resolved",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","type",7,"character varying",10,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_algorithm","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","uncompressed_heap_size",3,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_events","position_id",4,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_hypertable_invalidation_log","lowest_modified_value",2,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","votes_up",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","bucket_width",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","integer_now_func",12,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","application_name",2,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","latitude",3,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_events","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","uncompressed_toast_size",4,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","valid",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","model_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","avg_speed",7,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","metadata","value",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","total_successes",10,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","chunk_sizing_func_name",8,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","alerts","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","alerts","severity",4,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","orderby",4,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_policy_chunk_stats","num_times_job_run",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","route_json",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","next_start",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","risk_level",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","proc_schema",7,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","detected_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","interval_length",9,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_materialization_invalidation_log","lowest_modified_value",2,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","data",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","consecutive_crashes",14,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","battery_level",3,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","is_anomaly",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","execution_start",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofence_events","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","metadata",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","longitude",4,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","osm_chunk",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","created_by",10,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","name",3,"character varying",120,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_constraint","hypertable_constraint_name",4,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","last_successful_finish",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","spatial_ref_sys","auth_name",2,"character varying",256,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","orderby_desc",5,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","cluster_id",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","compress_interval_length",10,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","centroid_geom",6,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","reports",9,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","last_connection",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_algorithm","name",3,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","source",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_materialization_invalidation_log","greatest_modified_value",3,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","config",14,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan","end_ts",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","total_duration_failures",9,"interval",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","bucket_timezone",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","numrows_post_compression",10,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_column_stats","range_start",5,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_invalidation_threshold","watermark",2,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","timezone",17,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","compression_state",10,"smallint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","trained_to",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","direct_view_name",9,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","modo",8,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","direct_view_schema",8,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","date",3,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","total_crashes",12,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","start_ts",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_hypertable_invalidation_log","greatest_modified_value",3,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","partitioning_func",8,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","aligned",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes","distance_km",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","consecutive_failures",13,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","centroid_lat",4,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","partitioning_func_schema",7,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofence_events","event_type",5,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","route",4,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","telemetry_event","tag",2,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","last_run_success",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","config",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","chunk_sizing_func_schema",7,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","segmentby",3,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","ignition",2,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","compressed_heap_size",6,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","status",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","succeeded",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","metadata","include_in_telemetry",3,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","gsm_signal",4,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","num_dimensions",6,"smallint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","compressed_toast_size",7,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","bucket_fixed_width",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_policy_chunk_stats","last_time_job_run",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","telemetry_event","body",3,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","alerts","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","proc_name",8,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","geom",4,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","column_type",4,"regtype",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","bucket_origin",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","total_failures",11,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","pid",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","schedule_interval",3,"interval",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","vehicle_id",2,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan","user_view_definition",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","centroid_lng",5,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","vehicle_id",3,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","retry_period",6,"interval",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_events","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","fixed_schedule",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","max_runtime",4,"interval",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","status",12,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","trained_from",5,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes","duration_minutes",6,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofence_events","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","integer_now_func_schema",11,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_status","gps_fix",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","owner",9,"regrole",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","bucket_func",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","check_name",16,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","job_id",2,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","alerts","alert_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofence_events","position_id",4,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","gps_positions","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","spatial_ref_sys","srtext",4,"character varying",2048,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","max_retries",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","status",4,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_materialization_ranges","lowest_modified_value",2,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_algorithm","version",2,"smallint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","votes_down",8,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","spatial_ref_sys","auth_srid",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_watermark","watermark",2,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","device_events","event_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","dropped",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","spatial_ref_sys","proj4text",5,"character varying",2048,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","geom",5,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","compressed_index_size",8,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","type",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","uncompressed_index_size",5,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_bucket_function","bucket_offset",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","last_start",2,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","orderby_nullsfirst",6,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","total_duration",8,"interval",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan","start_ts",2,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","status",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg","materialized_only",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","flags",15,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk","creation_time",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","total_runs",7,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","activated_at",5,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_materialization_ranges","greatest_modified_value",3,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_agg_migrate_plan_step","end_ts",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_1_chunk","altitude",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","hypertable","chunk_target_size",9,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","continuous_aggs_hypertable_invalidation_log","hypertable_id",1,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_7_chunk","heading",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_6_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","satellites",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_3_chunk","geom",3,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","tracked_devices","last_seen",6,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","numrows_frozen_immediately",11,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","dimension","num_slices",6,"smallint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_5_chunk","accuracy",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_clusters_ml","density",7,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_settings","index",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat","last_finish",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes_ml","total_distance",6,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","geofences","active",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes","route_geom",4,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","scheduled",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","initial_start",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","anomaly_models_ml","model_path",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","bgw_job_stat_history","execution_finish",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","compression_chunk_size","numrows_pre_compression",9,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","public","risk_zones","confidence",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","telemetry_event","created",1,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","route_anomalies_ml","anomaly_score",6,"double precision",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_4_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","bgw_job","check_schema",15,"name",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","tracking","daily_routes","route_date",3,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_catalog","chunk_rewrite","new_relid",2,"regclass",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_8_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","LinkGPStracking","_timescaledb_internal","_hyper_1_2_chunk","speed",4,"real",NULL,NULL,NULL,NULL,NULL
